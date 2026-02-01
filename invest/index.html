@@ -4,47 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Investor Dashboard | Marcus Capital</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --primary: #1e3a5f;
-            --primary-light: #2d5a8a;
-            --accent: #c9a227;
-            --text: #1a1a1a;
-            --text-light: #666;
-            --bg: #f5f5f5;
+            --bg: #0a0a0a;
             --white: #ffffff;
-            --success: #2e7d32;
-            --border: #e0e0e0;
+            --gray: #888;
+            --accent: #c9a227;
+            --border: #333;
+            --success: #22c55e;
         }
         
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             background: var(--bg);
-            color: var(--text);
+            color: var(--white);
             line-height: 1.5;
         }
         
+        /* Header */
         header {
-            background: var(--primary);
-            color: var(--white);
-            padding: 1rem 2rem;
-        }
-        
-        .header-inner {
-            max-width: 1200px;
-            margin: 0 auto;
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
         .logo {
-            font-size: 1.25rem;
-            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
         }
         
         .logo span { color: var(--accent); }
@@ -52,104 +46,130 @@
         .user-info {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            font-size: 0.9rem;
+            gap: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
         }
         
         .user-info a {
-            color: var(--white);
-            opacity: 0.8;
+            color: var(--gray);
             text-decoration: none;
+            transition: color 0.2s;
         }
         
-        .user-info a:hover { opacity: 1; }
+        .user-info a:hover { color: var(--white); }
         
+        /* Main */
         main {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 3rem;
+        }
+        
+        .page-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .page-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
         }
         
         .page-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 2.5rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
         }
         
         .page-subtitle {
-            color: var(--text-light);
-            margin-bottom: 2rem;
+            color: var(--gray);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
         }
         
-        /* Portfolio Summary Banner */
+        /* Portfolio Banner */
         .portfolio-banner {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: var(--white);
-            border-radius: 12px;
+            border: 1px solid var(--accent);
             padding: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
         
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+            gap: 1px;
+            background: var(--border);
         }
         
         .portfolio-item {
+            background: var(--bg);
+            padding: 1.5rem;
             text-align: center;
         }
         
         .portfolio-label {
-            font-size: 0.75rem;
-            opacity: 0.8;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gray);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
         }
         
         .portfolio-value {
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
         }
         
-        .portfolio-value.highlight {
-            color: var(--accent);
-        }
+        .portfolio-value.accent { color: var(--accent); }
         
         .portfolio-subtext {
             font-size: 0.8rem;
-            opacity: 0.7;
-            margin-top: 0.25rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+        
+        /* Two Column */
+        .two-col {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
         }
         
         /* Cards */
         .card {
-            background: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
         }
         
         .card-header {
             padding: 1rem 1.5rem;
             border-bottom: 1px solid var(--border);
-            font-weight: 600;
-            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
-        .card-body {
-            padding: 1.5rem;
+        .card-header span {
+            color: var(--gray);
+            text-transform: none;
+            letter-spacing: 0;
         }
         
-        /* Two Column Layout */
-        .two-col {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 1.5rem;
+        .card-body {
+            padding: 1.5rem;
         }
         
         /* Table */
@@ -160,43 +180,35 @@
         
         .table th {
             text-align: left;
-            padding: 0.75rem 1rem;
-            background: var(--bg);
-            font-size: 0.75rem;
+            padding: 1rem 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-light);
-            font-weight: 600;
-        }
-        
-        .table td {
-            padding: 0.75rem 1rem;
+            letter-spacing: 0.1em;
+            color: var(--gray);
             border-bottom: 1px solid var(--border);
         }
         
-        .table tr:last-child td {
-            border-bottom: none;
+        .table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
         }
         
+        .table tr:last-child td { border-bottom: none; }
+        
         .status-current {
-            background: #e8f5e9;
             color: var(--success);
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
             font-weight: 600;
         }
         
         .status-paid-off {
-            background: #e3f2fd;
-            color: #1976d2;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
+            color: var(--accent);
             font-weight: 600;
         }
         
-        /* Distribution History */
+        /* Distribution */
         .distribution-item {
             display: flex;
             justify-content: space-between;
@@ -205,26 +217,28 @@
             border-bottom: 1px solid var(--border);
         }
         
-        .distribution-item:last-child {
-            border-bottom: none;
-        }
+        .distribution-item:last-child { border-bottom: none; }
         
         .distribution-date {
-            color: var(--text-light);
-            font-size: 0.85rem;
+            color: var(--gray);
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
         }
         
         .distribution-amount {
             font-weight: 600;
             color: var(--success);
+            font-family: 'JetBrains Mono', monospace;
         }
         
-        /* Summary Card */
+        /* Summary */
         .summary-row {
             display: flex;
             justify-content: space-between;
             padding: 0.75rem 0;
             border-bottom: 1px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
         }
         
         .summary-row:last-child {
@@ -233,49 +247,58 @@
             font-weight: 600;
         }
         
-        .summary-label {
-            color: var(--text-light);
-        }
+        .summary-label { color: var(--gray); }
         
         /* CTA */
         .invest-cta {
-            background: var(--bg);
-            border-radius: 8px;
-            padding: 1.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
             text-align: center;
-            margin-top: 1rem;
         }
         
         .invest-cta p {
-            color: var(--text-light);
+            color: var(--gray);
             margin-bottom: 1rem;
             font-size: 0.9rem;
         }
         
         .btn {
             display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
+            padding: 1rem 2rem;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             border: none;
+            cursor: pointer;
+            transition: all 0.2s;
         }
         
         .btn-primary {
-            background: var(--primary);
-            color: var(--white);
+            background: var(--white);
+            color: var(--bg);
         }
         
+        .btn-primary:hover {
+            background: var(--accent);
+        }
+        
+        /* Footer */
         footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 3rem;
             text-align: center;
-            padding: 2rem;
-            color: var(--text-light);
-            font-size: 0.85rem;
+            color: var(--gray);
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
+            header { padding: 1rem 1.5rem; }
+            main { padding: 1.5rem; }
             .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
             .two-col { grid-template-columns: 1fr; }
         }
@@ -283,20 +306,20 @@
 </head>
 <body>
     <!-- Auth Overlay -->
-    <div id="auth-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:#1e3a5f;z-index:9999;display:flex;align-items:center;justify-content:center;">
-        <div style="background:#fff;padding:3rem;border-radius:8px;text-align:center;max-width:400px;width:90%;">
-            <h2 style="color:#1e3a5f;margin-bottom:0.5rem;font-family:'Inter',sans-serif;">Investor Login</h2>
-            <p style="color:#666;margin-bottom:2rem;font-family:'Inter',sans-serif;">Enter your credentials to view your portfolio.</p>
-            <input type="text" id="auth-user" placeholder="Email" style="width:100%;padding:0.75rem 1rem;margin-bottom:1rem;border:1px solid #e0e0e0;border-radius:6px;font-size:1rem;font-family:'Inter',sans-serif;">
-            <input type="password" id="auth-pass" placeholder="Password" style="width:100%;padding:0.75rem 1rem;margin-bottom:1rem;border:1px solid #e0e0e0;border-radius:6px;font-size:1rem;font-family:'Inter',sans-serif;">
-            <button onclick="doLogin()" style="width:100%;padding:0.75rem;background:#c9a227;border:none;border-radius:6px;font-weight:600;font-size:1rem;cursor:pointer;font-family:'Inter',sans-serif;">Sign In</button>
-            <p id="auth-error" style="color:#c00;margin-top:1rem;display:none;font-family:'Inter',sans-serif;">Invalid credentials</p>
-            <p style="color:#999;margin-top:2rem;font-size:0.85rem;font-family:'Inter',sans-serif;">Demo: Marcus / RoundOnMe!</p>
+    <div id="auth-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0a0a;z-index:9999;display:flex;align-items:center;justify-content:center;">
+        <div style="border:1px solid #333;padding:3rem;text-align:center;max-width:400px;width:90%;background:#0a0a0a;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:#c9a227;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1rem;">// Investor Login</div>
+            <h2 style="color:#fff;margin-bottom:0.5rem;font-family:'Space Grotesk',sans-serif;font-size:1.5rem;">Welcome Back</h2>
+            <p style="color:#888;margin-bottom:2rem;font-family:'Space Grotesk',sans-serif;">Enter your credentials to continue.</p>
+            <input type="text" id="auth-user" placeholder="Username" style="width:100%;padding:1rem;margin-bottom:1rem;border:1px solid #333;background:#0a0a0a;color:#fff;font-size:1rem;font-family:'JetBrains Mono',monospace;">
+            <input type="password" id="auth-pass" placeholder="Password" style="width:100%;padding:1rem;margin-bottom:1.5rem;border:1px solid #333;background:#0a0a0a;color:#fff;font-size:1rem;font-family:'JetBrains Mono',monospace;">
+            <button onclick="doLogin()" style="width:100%;padding:1rem;background:#fff;border:none;font-weight:600;font-size:0.85rem;cursor:pointer;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.05em;">Sign In</button>
+            <p id="auth-error" style="color:#ef4444;margin-top:1rem;display:none;font-family:'Space Grotesk',sans-serif;">Invalid credentials</p>
+            <p style="color:#555;margin-top:2rem;font-size:0.8rem;font-family:'JetBrains Mono',monospace;">Demo: Marcus / RoundOnMe!</p>
         </div>
     </div>
     <script>
         function doLogin() {
-            var u = document.getElementById('auth-user').value;
             var p = document.getElementById('auth-pass').value;
             if (p === 'RoundOnMe!') {
                 document.getElementById('auth-overlay').style.display = 'none';
@@ -310,20 +333,21 @@
     </script>
     
     <header>
-        <div class="header-inner">
-            <div class="logo">Marcus<span>Capital</span></div>
-            <div class="user-info">
-                <span>Welcome, Sandra Lopez</span>
-                <a href="/">Logout</a>
-            </div>
+        <div class="logo">Marcus<span>Capital</span></div>
+        <div class="user-info">
+            <span>Sandra Lopez</span>
+            <a href="/">Logout</a>
         </div>
     </header>
     
     <main>
-        <h1 class="page-title">Investor Dashboard</h1>
-        <p class="page-subtitle">Account #INV-2023-0142 | As of February 1, 2026</p>
+        <div class="page-header">
+            <div class="page-label">// Investor Dashboard</div>
+            <h1 class="page-title">Portfolio Overview</h1>
+            <p class="page-subtitle">INV-2023-0142 | February 1, 2026</p>
+        </div>
         
-        <!-- Portfolio Summary -->
+        <!-- Portfolio Banner -->
         <div class="portfolio-banner">
             <div class="portfolio-grid">
                 <div class="portfolio-item">
@@ -338,11 +362,11 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-label">IRR</div>
-                    <div class="portfolio-value highlight">10.46%</div>
+                    <div class="portfolio-value accent">10.46%</div>
                     <div class="portfolio-subtext">Since inception</div>
                 </div>
                 <div class="portfolio-item">
-                    <div class="portfolio-label">Distributions Received</div>
+                    <div class="portfolio-label">Distributions</div>
                     <div class="portfolio-value">$6,127</div>
                     <div class="portfolio-subtext">15 payments</div>
                 </div>
@@ -353,16 +377,13 @@
             <div>
                 <!-- Active Loans -->
                 <div class="card">
-                    <div class="card-header">
-                        <span>Your Loan Portfolio</span>
-                        <span style="font-weight: normal; color: var(--text-light); font-size: 0.85rem;">8 Active Loans</span>
-                    </div>
-                    <div class="card-body" style="padding: 0;">
+                    <div class="card-header">// Loan Portfolio <span>8 Active</span></div>
+                    <div class="card-body" style="padding:0;">
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th>Borrower</th>
-                                    <th>Business Type</th>
+                                    <th>Type</th>
                                     <th>Your Share</th>
                                     <th>Rate</th>
                                     <th>Status</th>
@@ -371,74 +392,74 @@
                             <tbody>
                                 <tr>
                                     <td>James R.</td>
-                                    <td>Food Truck</td>
+                                    <td>Food Service</td>
                                     <td>$12,500</td>
                                     <td>12%</td>
-                                    <td><span class="status-current">Current</span></td>
+                                    <td class="status-current">CURRENT</td>
                                 </tr>
                                 <tr>
                                     <td>David R.</td>
                                     <td>Auto Repair</td>
                                     <td>$15,000</td>
                                     <td>12%</td>
-                                    <td><span class="status-current">Current</span></td>
+                                    <td class="status-current">CURRENT</td>
                                 </tr>
                                 <tr>
                                     <td>Jennifer K.</td>
                                     <td>Salon</td>
                                     <td>$8,500</td>
                                     <td>12%</td>
-                                    <td><span class="status-current">Current</span></td>
+                                    <td class="status-current">CURRENT</td>
                                 </tr>
                                 <tr>
                                     <td>Robert M.</td>
                                     <td>Landscaping</td>
                                     <td>$10,000</td>
                                     <td>12%</td>
-                                    <td><span class="status-current">Current</span></td>
+                                    <td class="status-current">CURRENT</td>
                                 </tr>
                                 <tr>
                                     <td>Maria S.</td>
-                                    <td>Cleaning Service</td>
+                                    <td>Cleaning</td>
                                     <td>$7,500</td>
                                     <td>12%</td>
-                                    <td><span class="status-current">Current</span></td>
+                                    <td class="status-current">CURRENT</td>
                                 </tr>
                                 <tr>
                                     <td>Thomas L.</td>
                                     <td>HVAC</td>
                                     <td>$11,000</td>
                                     <td>12%</td>
-                                    <td><span class="status-current">Current</span></td>
+                                    <td class="status-current">CURRENT</td>
                                 </tr>
                                 <tr>
                                     <td>Angela B.</td>
                                     <td>Bakery</td>
                                     <td>$6,500</td>
                                     <td>12%</td>
-                                    <td><span class="status-current">Current</span></td>
+                                    <td class="status-current">CURRENT</td>
                                 </tr>
                                 <tr>
                                     <td>William T.</td>
                                     <td>Plumbing</td>
                                     <td>$4,000</td>
                                     <td>12%</td>
-                                    <td><span class="status-current">Current</span></td>
+                                    <td class="status-current">CURRENT</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
                 
-                <!-- Completed Loans -->
+                <!-- Completed -->
                 <div class="card">
-                    <div class="card-header">Completed Loans</div>
-                    <div class="card-body" style="padding: 0;">
+                    <div class="card-header">// Completed Loans</div>
+                    <div class="card-body" style="padding:0;">
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th>Borrower</th>
-                                    <th>Business Type</th>
+                                    <th>Type</th>
                                     <th>Invested</th>
                                     <th>Returned</th>
                                     <th>Status</th>
@@ -447,17 +468,17 @@
                             <tbody>
                                 <tr>
                                     <td>Carlos V.</td>
-                                    <td>Taco Truck</td>
+                                    <td>Food Service</td>
                                     <td>$5,000</td>
                                     <td>$5,620</td>
-                                    <td><span class="status-paid-off">Paid Off</span></td>
+                                    <td class="status-paid-off">PAID OFF</td>
                                 </tr>
                                 <tr>
                                     <td>Nancy W.</td>
                                     <td>Daycare</td>
                                     <td>$8,000</td>
                                     <td>$8,992</td>
-                                    <td><span class="status-paid-off">Paid Off</span></td>
+                                    <td class="status-paid-off">PAID OFF</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -466,76 +487,76 @@
             </div>
             
             <div>
-                <!-- Distribution History -->
+                <!-- Distributions -->
                 <div class="card">
-                    <div class="card-header">Recent Distributions</div>
+                    <div class="card-header">// Recent Distributions</div>
                     <div class="card-body">
                         <div class="distribution-item">
                             <div>
                                 <div>January 2026</div>
-                                <div class="distribution-date">Paid Jan 5</div>
+                                <div class="distribution-date">Jan 5</div>
                             </div>
                             <div class="distribution-amount">+$612.50</div>
                         </div>
                         <div class="distribution-item">
                             <div>
                                 <div>December 2025</div>
-                                <div class="distribution-date">Paid Dec 5</div>
+                                <div class="distribution-date">Dec 5</div>
                             </div>
                             <div class="distribution-amount">+$598.33</div>
                         </div>
                         <div class="distribution-item">
                             <div>
                                 <div>November 2025</div>
-                                <div class="distribution-date">Paid Nov 5</div>
+                                <div class="distribution-date">Nov 5</div>
                             </div>
                             <div class="distribution-amount">+$587.20</div>
                         </div>
                         <div class="distribution-item">
                             <div>
                                 <div>October 2025</div>
-                                <div class="distribution-date">Paid Oct 5</div>
+                                <div class="distribution-date">Oct 5</div>
                             </div>
                             <div class="distribution-amount">+$575.00</div>
                         </div>
                         <div class="distribution-item">
                             <div>
                                 <div>September 2025</div>
-                                <div class="distribution-date">Paid Sep 5</div>
+                                <div class="distribution-date">Sep 5</div>
                             </div>
                             <div class="distribution-amount">+$562.50</div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Investment Summary -->
+                <!-- Summary -->
                 <div class="card">
-                    <div class="card-header">Investment Summary</div>
+                    <div class="card-header">// Investment Summary</div>
                     <div class="card-body">
                         <div class="summary-row">
-                            <span class="summary-label">Initial Investment</span>
+                            <span class="summary-label">Initial</span>
                             <span>$50,000</span>
                         </div>
                         <div class="summary-row">
-                            <span class="summary-label">Additional Deposits</span>
+                            <span class="summary-label">Additional</span>
                             <span>$25,000</span>
                         </div>
                         <div class="summary-row">
-                            <span class="summary-label">Earnings Reinvested</span>
+                            <span class="summary-label">Reinvested</span>
                             <span>$1,720</span>
                         </div>
                         <div class="summary-row">
-                            <span class="summary-label">Distributions Taken</span>
+                            <span class="summary-label">Distributions</span>
                             <span>-$6,127</span>
                         </div>
                         <div class="summary-row">
                             <span>Current Value</span>
-                            <span style="color: var(--success);">$82,847</span>
+                            <span style="color:#22c55e;">$82,847</span>
                         </div>
                         
                         <div class="invest-cta">
-                            <p>Ready to grow your impact?</p>
-                            <button class="btn btn-primary">Add to Investment</button>
+                            <p>Ready to expand your portfolio?</p>
+                            <button class="btn btn-primary">Add Investment</button>
                         </div>
                     </div>
                 </div>
@@ -544,7 +565,7 @@
     </main>
     
     <footer>
-        <p>Marcus Capital | Questions? Contact investors@marcuscapital.com</p>
+        <p>Marcus Capital | investors@marcuscapital.com</p>
     </footer>
 </body>
 </html>

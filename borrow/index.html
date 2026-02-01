@@ -4,48 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Statement | Marcus Capital</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --primary: #1e3a5f;
-            --primary-light: #2d5a8a;
-            --accent: #c9a227;
-            --text: #1a1a1a;
-            --text-light: #666;
-            --bg: #f5f5f5;
+            --bg: #0a0a0a;
             --white: #ffffff;
-            --success: #2e7d32;
-            --border: #e0e0e0;
+            --gray: #888;
+            --accent: #c9a227;
+            --border: #333;
+            --success: #22c55e;
         }
         
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             background: var(--bg);
-            color: var(--text);
+            color: var(--white);
             line-height: 1.5;
         }
         
         /* Header */
         header {
-            background: var(--primary);
-            color: var(--white);
-            padding: 1rem 2rem;
-        }
-        
-        .header-inner {
-            max-width: 1200px;
-            margin: 0 auto;
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
         .logo {
-            font-size: 1.25rem;
-            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
         }
         
         .logo span { color: var(--accent); }
@@ -53,52 +46,130 @@
         .user-info {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            font-size: 0.9rem;
+            gap: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
         }
         
         .user-info a {
-            color: var(--white);
-            opacity: 0.8;
+            color: var(--gray);
             text-decoration: none;
+            transition: color 0.2s;
         }
         
-        .user-info a:hover { opacity: 1; }
+        .user-info a:hover { color: var(--white); }
         
         /* Main */
         main {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 3rem;
+        }
+        
+        .page-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .page-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
         }
         
         .page-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 2.5rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
         }
         
         .page-subtitle {
-            color: var(--text-light);
-            margin-bottom: 2rem;
+            color: var(--gray);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+        
+        /* Next Payment */
+        .next-payment {
+            border: 1px solid var(--accent);
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+        
+        .next-payment-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .next-payment-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .next-payment-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: var(--white);
+            color: var(--bg);
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent);
         }
         
         /* Cards */
         .card {
-            background: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
         }
         
         .card-header {
             padding: 1rem 1.5rem;
             border-bottom: 1px solid var(--border);
-            font-weight: 600;
-            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        
+        .card-header span {
+            color: var(--gray);
+            text-transform: none;
+            letter-spacing: 0;
         }
         
         .card-body {
@@ -109,61 +180,62 @@
         .summary-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
+            gap: 1px;
+            background: var(--border);
         }
         
         .summary-item {
-            text-align: center;
-            padding: 1rem;
             background: var(--bg);
-            border-radius: 6px;
+            padding: 1.5rem;
+            text-align: center;
         }
         
         .summary-label {
-            font-size: 0.75rem;
-            color: var(--text-light);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gray);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
         }
         
         .summary-value {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 700;
-            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
         }
         
-        .summary-value.due {
-            color: var(--accent);
-        }
+        .summary-value.accent { color: var(--accent); }
         
-        /* Loan Details */
-        .loan-details {
+        /* Details Grid */
+        .details-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+            gap: 1px;
+            background: var(--border);
+        }
+        
+        .detail-col {
+            background: var(--bg);
         }
         
         .detail-row {
             display: flex;
             justify-content: space-between;
-            padding: 0.75rem 0;
+            padding: 1rem 1.5rem;
             border-bottom: 1px solid var(--border);
         }
         
-        .detail-row:last-child {
-            border-bottom: none;
-        }
+        .detail-row:last-child { border-bottom: none; }
         
-        .detail-label {
-            color: var(--text-light);
-        }
+        .detail-label { color: var(--gray); }
         
         .detail-value {
             font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
         }
         
-        /* Payment Schedule */
+        /* Table */
         .table {
             width: 100%;
             border-collapse: collapse;
@@ -171,121 +243,62 @@
         
         .table th {
             text-align: left;
-            padding: 0.75rem 1rem;
-            background: var(--bg);
-            font-size: 0.75rem;
+            padding: 1rem 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-light);
-            font-weight: 600;
-        }
-        
-        .table td {
-            padding: 0.75rem 1rem;
+            letter-spacing: 0.1em;
+            color: var(--gray);
             border-bottom: 1px solid var(--border);
         }
         
-        .table tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .status-paid {
-            color: var(--success);
-            font-weight: 600;
-        }
-        
-        .status-due {
-            color: var(--accent);
-            font-weight: 600;
-        }
-        
-        .status-upcoming {
-            color: var(--text-light);
-        }
-        
-        /* Next Payment */
-        .next-payment {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: var(--white);
-            border-radius: 8px;
-            padding: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .next-payment-info h3 {
-            font-size: 0.85rem;
-            opacity: 0.8;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .next-payment-amount {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-        
-        .next-payment-date {
+        .table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.9rem;
-            opacity: 0.9;
-            margin-top: 0.25rem;
         }
         
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.2s;
-            cursor: pointer;
-            border: none;
-        }
+        .table tr:last-child td { border-bottom: none; }
         
-        .btn-accent {
-            background: var(--accent);
-            color: var(--text);
-        }
-        
-        .btn-accent:hover {
-            background: #d4af37;
-        }
+        .status-paid { color: var(--success); }
+        .status-due { color: var(--accent); }
         
         /* Footer */
         footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 3rem;
             text-align: center;
-            padding: 2rem;
-            color: var(--text-light);
-            font-size: 0.85rem;
+            color: var(--gray);
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
         }
         
         @media (max-width: 768px) {
+            header { padding: 1rem 1.5rem; }
+            main { padding: 1.5rem; }
             .summary-grid { grid-template-columns: repeat(2, 1fr); }
-            .loan-details { grid-template-columns: 1fr; }
+            .details-grid { grid-template-columns: 1fr; }
             .next-payment { flex-direction: column; text-align: center; gap: 1.5rem; }
         }
     </style>
 </head>
 <body>
     <!-- Auth Overlay -->
-    <div id="auth-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:#1e3a5f;z-index:9999;display:flex;align-items:center;justify-content:center;">
-        <div style="background:#fff;padding:3rem;border-radius:8px;text-align:center;max-width:400px;width:90%;">
-            <h2 style="color:#1e3a5f;margin-bottom:0.5rem;font-family:'Inter',sans-serif;">Account Login</h2>
-            <p style="color:#666;margin-bottom:2rem;font-family:'Inter',sans-serif;">Enter your credentials to view your loan statement.</p>
-            <input type="text" id="auth-user" placeholder="Email" style="width:100%;padding:0.75rem 1rem;margin-bottom:1rem;border:1px solid #e0e0e0;border-radius:6px;font-size:1rem;font-family:'Inter',sans-serif;">
-            <input type="password" id="auth-pass" placeholder="Password" style="width:100%;padding:0.75rem 1rem;margin-bottom:1rem;border:1px solid #e0e0e0;border-radius:6px;font-size:1rem;font-family:'Inter',sans-serif;">
-            <button onclick="doLogin()" style="width:100%;padding:0.75rem;background:#c9a227;border:none;border-radius:6px;font-weight:600;font-size:1rem;cursor:pointer;font-family:'Inter',sans-serif;">Sign In</button>
-            <p id="auth-error" style="color:#c00;margin-top:1rem;display:none;font-family:'Inter',sans-serif;">Invalid credentials</p>
-            <p style="color:#999;margin-top:2rem;font-size:0.85rem;font-family:'Inter',sans-serif;">Demo: Marcus / RoundOnMe!</p>
+    <div id="auth-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0a0a;z-index:9999;display:flex;align-items:center;justify-content:center;">
+        <div style="border:1px solid #333;padding:3rem;text-align:center;max-width:400px;width:90%;background:#0a0a0a;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:#c9a227;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1rem;">// Account Login</div>
+            <h2 style="color:#fff;margin-bottom:0.5rem;font-family:'Space Grotesk',sans-serif;font-size:1.5rem;">Welcome Back</h2>
+            <p style="color:#888;margin-bottom:2rem;font-family:'Space Grotesk',sans-serif;">Enter your credentials to continue.</p>
+            <input type="text" id="auth-user" placeholder="Username" style="width:100%;padding:1rem;margin-bottom:1rem;border:1px solid #333;background:#0a0a0a;color:#fff;font-size:1rem;font-family:'JetBrains Mono',monospace;">
+            <input type="password" id="auth-pass" placeholder="Password" style="width:100%;padding:1rem;margin-bottom:1.5rem;border:1px solid #333;background:#0a0a0a;color:#fff;font-size:1rem;font-family:'JetBrains Mono',monospace;">
+            <button onclick="doLogin()" style="width:100%;padding:1rem;background:#fff;border:none;font-weight:600;font-size:0.85rem;cursor:pointer;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.05em;">Sign In</button>
+            <p id="auth-error" style="color:#ef4444;margin-top:1rem;display:none;font-family:'Space Grotesk',sans-serif;">Invalid credentials</p>
+            <p style="color:#555;margin-top:2rem;font-size:0.8rem;font-family:'JetBrains Mono',monospace;">Demo: Marcus / RoundOnMe!</p>
         </div>
     </div>
     <script>
         function doLogin() {
-            var u = document.getElementById('auth-user').value;
             var p = document.getElementById('auth-pass').value;
             if (p === 'RoundOnMe!') {
                 document.getElementById('auth-overlay').style.display = 'none';
@@ -299,33 +312,34 @@
     </script>
     
     <header>
-        <div class="header-inner">
-            <div class="logo">Marcus<span>Capital</span></div>
-            <div class="user-info">
-                <span>Welcome, James Rodriguez</span>
-                <a href="/">Logout</a>
-            </div>
+        <div class="logo">Marcus<span>Capital</span></div>
+        <div class="user-info">
+            <span>James Rodriguez</span>
+            <a href="/">Logout</a>
         </div>
     </header>
     
     <main>
-        <h1 class="page-title">Loan Statement</h1>
-        <p class="page-subtitle">Account #LC-2024-0847 | Statement as of February 1, 2026</p>
+        <div class="page-header">
+            <div class="page-label">// Loan Statement</div>
+            <h1 class="page-title">Account Overview</h1>
+            <p class="page-subtitle">LC-2024-0847 | February 1, 2026</p>
+        </div>
         
-        <!-- Next Payment Banner -->
+        <!-- Next Payment -->
         <div class="next-payment">
-            <div class="next-payment-info">
-                <h3>Next Payment Due</h3>
+            <div>
+                <div class="next-payment-label">// Next Payment Due</div>
                 <div class="next-payment-amount">$2,847.50</div>
                 <div class="next-payment-date">Due: February 15, 2026</div>
             </div>
-            <button class="btn btn-accent">Make a Payment</button>
+            <button class="btn btn-primary">Make a Payment</button>
         </div>
         
         <!-- Summary -->
         <div class="card">
-            <div class="card-header">Account Summary</div>
-            <div class="card-body">
+            <div class="card-header">// Account Summary</div>
+            <div class="card-body" style="padding:0;">
                 <div class="summary-grid">
                     <div class="summary-item">
                         <div class="summary-label">Original Loan</div>
@@ -333,15 +347,15 @@
                     </div>
                     <div class="summary-item">
                         <div class="summary-label">Current Balance</div>
-                        <div class="summary-value">$38,247.83</div>
+                        <div class="summary-value">$38,247</div>
                     </div>
                     <div class="summary-item">
                         <div class="summary-label">Principal Paid</div>
-                        <div class="summary-value">$11,752.17</div>
+                        <div class="summary-value">$11,752</div>
                     </div>
                     <div class="summary-item">
-                        <div class="summary-label">Interest Paid YTD</div>
-                        <div class="summary-value due">$4,127.50</div>
+                        <div class="summary-label">Interest YTD</div>
+                        <div class="summary-value accent">$4,127</div>
                     </div>
                 </div>
             </div>
@@ -349,17 +363,17 @@
         
         <!-- Loan Details -->
         <div class="card">
-            <div class="card-header">Loan Details</div>
-            <div class="card-body">
-                <div class="loan-details">
-                    <div>
+            <div class="card-header">// Loan Details</div>
+            <div class="card-body" style="padding:0;">
+                <div class="details-grid">
+                    <div class="detail-col">
                         <div class="detail-row">
                             <span class="detail-label">Loan Type</span>
-                            <span class="detail-value">Business Term Loan</span>
+                            <span class="detail-value">Business Term</span>
                         </div>
                         <div class="detail-row">
                             <span class="detail-label">Original Amount</span>
-                            <span class="detail-value">$50,000.00</span>
+                            <span class="detail-value">$50,000</span>
                         </div>
                         <div class="detail-row">
                             <span class="detail-label">Interest Rate</span>
@@ -370,18 +384,18 @@
                             <span class="detail-value">4.00%</span>
                         </div>
                     </div>
-                    <div>
+                    <div class="detail-col">
                         <div class="detail-row">
-                            <span class="detail-label">Loan Term</span>
+                            <span class="detail-label">Term</span>
                             <span class="detail-value">24 Months</span>
                         </div>
                         <div class="detail-row">
-                            <span class="detail-label">Origination Date</span>
-                            <span class="detail-value">August 15, 2025</span>
+                            <span class="detail-label">Origination</span>
+                            <span class="detail-value">Aug 15, 2025</span>
                         </div>
                         <div class="detail-row">
-                            <span class="detail-label">Maturity Date</span>
-                            <span class="detail-value">August 15, 2027</span>
+                            <span class="detail-label">Maturity</span>
+                            <span class="detail-value">Aug 15, 2027</span>
                         </div>
                         <div class="detail-row">
                             <span class="detail-label">Monthly Payment</span>
@@ -394,15 +408,12 @@
         
         <!-- Payment History -->
         <div class="card">
-            <div class="card-header">
-                <span>Payment History</span>
-                <span style="font-weight: normal; color: var(--text-light); font-size: 0.85rem;">6 of 24 payments made</span>
-            </div>
-            <div class="card-body" style="padding: 0;">
+            <div class="card-header">// Payment History <span>6 of 24 payments</span></div>
+            <div class="card-body" style="padding:0;">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Due Date</th>
+                            <th>Date</th>
                             <th>Amount</th>
                             <th>Principal</th>
                             <th>Interest</th>
@@ -415,90 +426,42 @@
                             <td>$2,847.50</td>
                             <td>$2,097.50</td>
                             <td>$750.00</td>
-                            <td><span class="status-due">Due</span></td>
+                            <td class="status-due">DUE</td>
                         </tr>
                         <tr>
                             <td>Jan 15, 2026</td>
                             <td>$2,847.50</td>
                             <td>$2,076.38</td>
                             <td>$771.12</td>
-                            <td><span class="status-paid">Paid</span></td>
+                            <td class="status-paid">PAID</td>
                         </tr>
                         <tr>
                             <td>Dec 15, 2025</td>
                             <td>$2,847.50</td>
                             <td>$2,055.61</td>
                             <td>$791.89</td>
-                            <td><span class="status-paid">Paid</span></td>
+                            <td class="status-paid">PAID</td>
                         </tr>
                         <tr>
                             <td>Nov 15, 2025</td>
                             <td>$2,847.50</td>
                             <td>$2,035.17</td>
                             <td>$812.33</td>
-                            <td><span class="status-paid">Paid</span></td>
+                            <td class="status-paid">PAID</td>
                         </tr>
                         <tr>
                             <td>Oct 15, 2025</td>
                             <td>$2,847.50</td>
                             <td>$2,015.06</td>
                             <td>$832.44</td>
-                            <td><span class="status-paid">Paid</span></td>
+                            <td class="status-paid">PAID</td>
                         </tr>
                         <tr>
                             <td>Sep 15, 2025</td>
                             <td>$2,847.50</td>
                             <td>$1,995.29</td>
                             <td>$852.21</td>
-                            <td><span class="status-paid">Paid</span></td>
-                        </tr>
-                        <tr>
-                            <td>Aug 15, 2025</td>
-                            <td>$2,847.50</td>
-                            <td>$1,477.16</td>
-                            <td>$1,370.34</td>
-                            <td><span class="status-paid">Paid</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-        <!-- Upcoming Payments -->
-        <div class="card">
-            <div class="card-header">Upcoming Payments</div>
-            <div class="card-body" style="padding: 0;">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Due Date</th>
-                            <th>Amount</th>
-                            <th>Principal</th>
-                            <th>Interest</th>
-                            <th>Balance After</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Mar 15, 2026</td>
-                            <td>$2,847.50</td>
-                            <td>$2,118.98</td>
-                            <td>$728.52</td>
-                            <td>$36,128.85</td>
-                        </tr>
-                        <tr>
-                            <td>Apr 15, 2026</td>
-                            <td>$2,847.50</td>
-                            <td>$2,140.83</td>
-                            <td>$706.67</td>
-                            <td>$33,988.02</td>
-                        </tr>
-                        <tr>
-                            <td>May 15, 2026</td>
-                            <td>$2,847.50</td>
-                            <td>$2,163.05</td>
-                            <td>$684.45</td>
-                            <td>$31,824.97</td>
+                            <td class="status-paid">PAID</td>
                         </tr>
                     </tbody>
                 </table>
@@ -507,7 +470,7 @@
     </main>
     
     <footer>
-        <p>Marcus Capital | Questions? Contact support@marcuscapital.com</p>
+        <p>Marcus Capital | support@marcuscapital.com</p>
     </footer>
 </body>
 </html>
