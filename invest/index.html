@@ -282,6 +282,33 @@
     </style>
 </head>
 <body>
+    <!-- Auth Overlay -->
+    <div id="auth-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:#1e3a5f;z-index:9999;display:flex;align-items:center;justify-content:center;">
+        <div style="background:#fff;padding:3rem;border-radius:8px;text-align:center;max-width:400px;width:90%;">
+            <h2 style="color:#1e3a5f;margin-bottom:0.5rem;font-family:'Inter',sans-serif;">Investor Login</h2>
+            <p style="color:#666;margin-bottom:2rem;font-family:'Inter',sans-serif;">Enter your credentials to view your portfolio.</p>
+            <input type="text" id="auth-user" placeholder="Email" style="width:100%;padding:0.75rem 1rem;margin-bottom:1rem;border:1px solid #e0e0e0;border-radius:6px;font-size:1rem;font-family:'Inter',sans-serif;">
+            <input type="password" id="auth-pass" placeholder="Password" style="width:100%;padding:0.75rem 1rem;margin-bottom:1rem;border:1px solid #e0e0e0;border-radius:6px;font-size:1rem;font-family:'Inter',sans-serif;">
+            <button onclick="doLogin()" style="width:100%;padding:0.75rem;background:#c9a227;border:none;border-radius:6px;font-weight:600;font-size:1rem;cursor:pointer;font-family:'Inter',sans-serif;">Sign In</button>
+            <p id="auth-error" style="color:#c00;margin-top:1rem;display:none;font-family:'Inter',sans-serif;">Invalid credentials</p>
+            <p style="color:#999;margin-top:2rem;font-size:0.85rem;font-family:'Inter',sans-serif;">Demo: sandra@demo.com / demo2026</p>
+        </div>
+    </div>
+    <script>
+        function doLogin() {
+            var u = document.getElementById('auth-user').value;
+            var p = document.getElementById('auth-pass').value;
+            if (p === 'demo2026') {
+                document.getElementById('auth-overlay').style.display = 'none';
+            } else {
+                document.getElementById('auth-error').style.display = 'block';
+            }
+        }
+        document.getElementById('auth-pass').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') doLogin();
+        });
+    </script>
+    
     <header>
         <div class="header-inner">
             <div class="logo">Marcus<span>Capital</span></div>
