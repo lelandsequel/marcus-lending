@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colton Capital | Community Lending</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #1e3a5f;
+            --primary-light: #2d5a8a;
+            --accent: #c9a227;
+            --text: #1a1a1a;
+            --text-light: #666;
+            --bg: #fafafa;
+            --white: #ffffff;
+            --success: #2e7d32;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background: var(--white);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        
+        .hero-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .hero .btn-primary {
+            background: var(--accent);
+            color: var(--text);
+        }
+        
+        .hero .btn-primary:hover {
+            background: #d4af37;
+        }
+        
+        .hero .btn-outline {
+            border-color: var(--white);
+            color: var(--white);
+        }
+        
+        .hero .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+        
+        /* Paths Section */
+        .paths {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .paths h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .paths-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+        
+        .paths-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .path-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .path-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        .path-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .path-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .path-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .path-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .path-features li {
+            padding: 0.5rem 0;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .path-features li::before {
+            content: "✓";
+            color: var(--success);
+            font-weight: 700;
+        }
+        
+        /* Stats */
+        .stats {
+            background: var(--primary);
+            color: var(--white);
+            padding: 4rem 2rem;
+        }
+        
+        .stats-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+        
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+        
+        .testimonials-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .testimonial {
+            background: var(--bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .testimonial-role {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        /* CTA */
+        .cta {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+        }
+        
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .cta p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .paths-grid { grid-template-columns: 1fr; }
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <div class="logo">Colton<span>Capital</span></div>
+            <nav>
+                <a href="#borrowers">For Borrowers</a>
+                <a href="#investors">For Investors</a>
+                <a href="/borrow/">Borrower Login</a>
+                <a href="/invest/" class="btn btn-primary">Investor Login</a>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-inner">
+            <h1>Fuel Your Dreams.<br>Grow Your Community.</h1>
+            <p>We connect small business owners with investors who believe in the power of local enterprise. Fair rates. Flexible terms. Real impact.</p>
+            <div class="hero-buttons">
+                <a href="/borrow/" class="btn btn-primary">Apply for a Loan</a>
+                <a href="/invest/" class="btn btn-outline">Become an Investor</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="paths" id="borrowers">
+        <h2>Two Ways to Participate</h2>
+        <p class="paths-subtitle">Whether you're building a business or building wealth, we're here for you.</p>
+        
+        <div class="paths-grid">
+            <div class="path-card">
+                <div class="path-icon">🏪</div>
+                <h3>For Small Business Owners</h3>
+                <p>Traditional banks say no. We say yes. Get the capital you need to grow your business, hire your first employee, or bridge a cash flow gap — without the red tape.</p>
+                <ul class="path-features">
+                    <li>Loans from $10,000 to $250,000</li>
+                    <li>12-24 month flexible terms</li>
+                    <li>Competitive 12% annual rate</li>
+                    <li>Decision in 48 hours</li>
+                    <li>No prepayment penalties</li>
+                </ul>
+                <a href="/borrow/" class="btn btn-primary">Apply Now</a>
+            </div>
+            
+            <div class="path-card" id="investors">
+                <div class="path-icon">📈</div>
+                <h3>For Investors</h3>
+                <p>Earn meaningful returns while making a real difference. Your investment helps local entrepreneurs build something — and builds your portfolio at the same time.</p>
+                <ul class="path-features">
+                    <li>Target 8-10% annual returns</li>
+                    <li>Diversified loan portfolio</li>
+                    <li>Monthly distribution options</li>
+                    <li>Full transparency on every loan</li>
+                    <li>Minimum investment $5,000</li>
+                </ul>
+                <a href="/invest/" class="btn btn-primary">Start Investing</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="stats">
+        <div class="stats-inner">
+            <div>
+                <div class="stat-value">$2.4M</div>
+                <div class="stat-label">Total Loans Funded</div>
+            </div>
+            <div>
+                <div class="stat-value">47</div>
+                <div class="stat-label">Businesses Helped</div>
+            </div>
+            <div>
+                <div class="stat-value">0%</div>
+                <div class="stat-label">Default Rate</div>
+            </div>
+            <div>
+                <div class="stat-value">9.2%</div>
+                <div class="stat-label">Avg Investor Return</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <h2>Real Stories, Real Impact</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <p class="testimonial-text">"The bank turned me down three times. Colton Capital believed in my vision when no one else would. Now I've got two food trucks and six employees."</p>
+                <div class="testimonial-author">Marcus J.</div>
+                <div class="testimonial-role">Food Truck Owner, Houston</div>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"I was tired of 0.5% savings rates. With Colton Capital, I'm earning 9% while actually helping people in my community build something. Win-win."</p>
+                <div class="testimonial-author">Sandra L.</div>
+                <div class="testimonial-role">Investor since 2024</div>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"The loan process was straightforward, and the online portal makes it easy to track everything. No surprises, no hidden fees. Exactly what I needed."</p>
+                <div class="testimonial-author">David R.</div>
+                <div class="testimonial-role">Auto Repair Shop Owner</div>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"Finally, an investment that feels good AND performs well. I know exactly where my money is going and I can see the impact in my own neighborhood."</p>
+                <div class="testimonial-author">Patricia M.</div>
+                <div class="testimonial-role">Investor since 2023</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta">
+        <h2>Ready to Get Started?</h2>
+        <p>Whether you need capital or want to put your capital to work — we're here to help.</p>
+        <div class="cta-buttons">
+            <a href="/borrow/" class="btn btn-primary">Apply for a Loan</a>
+            <a href="/invest/" class="btn btn-outline">Become an Investor</a>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2026 Colton Capital. All rights reserved. | This is a demonstration site.</p>
+    </footer>
+</body>
+</html>

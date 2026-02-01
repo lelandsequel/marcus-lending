@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Dashboard | Colton Capital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #1e3a5f;
+            --primary-light: #2d5a8a;
+            --accent: #c9a227;
+            --text: #1a1a1a;
+            --text-light: #666;
+            --bg: #f5f5f5;
+            --white: #ffffff;
+            --success: #2e7d32;
+            --border: #e0e0e0;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+        }
+        
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 2rem;
+        }
+        
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        
+        .logo span { color: var(--accent); }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .user-info a {
+            color: var(--white);
+            opacity: 0.8;
+            text-decoration: none;
+        }
+        
+        .user-info a:hover { opacity: 1; }
+        
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-subtitle {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        /* Portfolio Summary Banner */
+        .portfolio-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        .portfolio-item {
+            text-align: center;
+        }
+        
+        .portfolio-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .portfolio-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+        
+        .portfolio-value.highlight {
+            color: var(--accent);
+        }
+        
+        .portfolio-subtext {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 0.25rem;
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        /* Table */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .table th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            background: var(--bg);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+        
+        .table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .status-current {
+            background: #e8f5e9;
+            color: var(--success);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .status-paid-off {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        /* Distribution History */
+        .distribution-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .distribution-item:last-child {
+            border-bottom: none;
+        }
+        
+        .distribution-date {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+        
+        .distribution-amount {
+            font-weight: 600;
+            color: var(--success);
+        }
+        
+        /* Summary Card */
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .summary-row:last-child {
+            border-bottom: none;
+            padding-top: 1rem;
+            font-weight: 600;
+        }
+        
+        .summary-label {
+            color: var(--text-light);
+        }
+        
+        /* CTA */
+        .invest-cta {
+            background: var(--bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .invest-cta p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 768px) {
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+            .two-col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <div class="logo">Colton<span>Capital</span></div>
+            <div class="user-info">
+                <span>Welcome, Sandra Lopez</span>
+                <a href="/">Logout</a>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <h1 class="page-title">Investor Dashboard</h1>
+        <p class="page-subtitle">Account #INV-2023-0142 | As of February 1, 2026</p>
+        
+        <!-- Portfolio Summary -->
+        <div class="portfolio-banner">
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-label">Total Invested</div>
+                    <div class="portfolio-value">$75,000</div>
+                    <div class="portfolio-subtext">Since Nov 2023</div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-label">Current Value</div>
+                    <div class="portfolio-value">$82,847</div>
+                    <div class="portfolio-subtext">+$7,847 total return</div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-label">Total Return</div>
+                    <div class="portfolio-value highlight">10.46%</div>
+                    <div class="portfolio-subtext">Since inception</div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-label">Distributions Received</div>
+                    <div class="portfolio-value">$6,127</div>
+                    <div class="portfolio-subtext">15 payments</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="two-col">
+            <div>
+                <!-- Active Loans -->
+                <div class="card">
+                    <div class="card-header">
+                        <span>Your Loan Portfolio</span>
+                        <span style="font-weight: normal; color: var(--text-light); font-size: 0.85rem;">8 Active Loans</span>
+                    </div>
+                    <div class="card-body" style="padding: 0;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Borrower</th>
+                                    <th>Business Type</th>
+                                    <th>Your Share</th>
+                                    <th>Rate</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Marcus J.</td>
+                                    <td>Food Truck</td>
+                                    <td>$12,500</td>
+                                    <td>12%</td>
+                                    <td><span class="status-current">Current</span></td>
+                                </tr>
+                                <tr>
+                                    <td>David R.</td>
+                                    <td>Auto Repair</td>
+                                    <td>$15,000</td>
+                                    <td>12%</td>
+                                    <td><span class="status-current">Current</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Jennifer K.</td>
+                                    <td>Salon</td>
+                                    <td>$8,500</td>
+                                    <td>12%</td>
+                                    <td><span class="status-current">Current</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Robert M.</td>
+                                    <td>Landscaping</td>
+                                    <td>$10,000</td>
+                                    <td>12%</td>
+                                    <td><span class="status-current">Current</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Maria S.</td>
+                                    <td>Cleaning Service</td>
+                                    <td>$7,500</td>
+                                    <td>12%</td>
+                                    <td><span class="status-current">Current</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Thomas L.</td>
+                                    <td>HVAC</td>
+                                    <td>$11,000</td>
+                                    <td>12%</td>
+                                    <td><span class="status-current">Current</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Angela B.</td>
+                                    <td>Bakery</td>
+                                    <td>$6,500</td>
+                                    <td>12%</td>
+                                    <td><span class="status-current">Current</span></td>
+                                </tr>
+                                <tr>
+                                    <td>William T.</td>
+                                    <td>Plumbing</td>
+                                    <td>$4,000</td>
+                                    <td>12%</td>
+                                    <td><span class="status-current">Current</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Completed Loans -->
+                <div class="card">
+                    <div class="card-header">Completed Loans</div>
+                    <div class="card-body" style="padding: 0;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Borrower</th>
+                                    <th>Business Type</th>
+                                    <th>Invested</th>
+                                    <th>Returned</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Carlos V.</td>
+                                    <td>Taco Truck</td>
+                                    <td>$5,000</td>
+                                    <td>$5,620</td>
+                                    <td><span class="status-paid-off">Paid Off</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Nancy W.</td>
+                                    <td>Daycare</td>
+                                    <td>$8,000</td>
+                                    <td>$8,992</td>
+                                    <td><span class="status-paid-off">Paid Off</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <!-- Distribution History -->
+                <div class="card">
+                    <div class="card-header">Recent Distributions</div>
+                    <div class="card-body">
+                        <div class="distribution-item">
+                            <div>
+                                <div>January 2026</div>
+                                <div class="distribution-date">Paid Jan 5</div>
+                            </div>
+                            <div class="distribution-amount">+$612.50</div>
+                        </div>
+                        <div class="distribution-item">
+                            <div>
+                                <div>December 2025</div>
+                                <div class="distribution-date">Paid Dec 5</div>
+                            </div>
+                            <div class="distribution-amount">+$598.33</div>
+                        </div>
+                        <div class="distribution-item">
+                            <div>
+                                <div>November 2025</div>
+                                <div class="distribution-date">Paid Nov 5</div>
+                            </div>
+                            <div class="distribution-amount">+$587.20</div>
+                        </div>
+                        <div class="distribution-item">
+                            <div>
+                                <div>October 2025</div>
+                                <div class="distribution-date">Paid Oct 5</div>
+                            </div>
+                            <div class="distribution-amount">+$575.00</div>
+                        </div>
+                        <div class="distribution-item">
+                            <div>
+                                <div>September 2025</div>
+                                <div class="distribution-date">Paid Sep 5</div>
+                            </div>
+                            <div class="distribution-amount">+$562.50</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Investment Summary -->
+                <div class="card">
+                    <div class="card-header">Investment Summary</div>
+                    <div class="card-body">
+                        <div class="summary-row">
+                            <span class="summary-label">Initial Investment</span>
+                            <span>$50,000</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Additional Deposits</span>
+                            <span>$25,000</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Earnings Reinvested</span>
+                            <span>$1,720</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Distributions Taken</span>
+                            <span>-$6,127</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Current Value</span>
+                            <span style="color: var(--success);">$82,847</span>
+                        </div>
+                        
+                        <div class="invest-cta">
+                            <p>Ready to grow your impact?</p>
+                            <button class="btn btn-primary">Add to Investment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>Colton Capital | Questions? Contact investors@coltoncapital.com</p>
+    </footer>
+</body>
+</html>
