@@ -30,9 +30,9 @@
         :root {
             --bg: #0a0a0a;
             --white: #ffffff;
-            --gray: #888;
+            --gray: #ccc;
             --accent: #c9a227;
-            --border: #333;
+            --border: #555;
         }
         
         body {
@@ -40,6 +40,7 @@
             background: transparent;
             color: var(--white);
             line-height: 1.5;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
         }
         
         /* Header */
@@ -76,13 +77,14 @@
         
         nav a {
             text-decoration: none;
-            color: var(--gray);
+            color: var(--white);
             font-size: 0.85rem;
             font-family: 'JetBrains Mono', monospace;
             transition: color 0.2s;
+            opacity: 0.85;
         }
         
-        nav a:hover { color: var(--white); }
+        nav a:hover { opacity: 1; color: var(--accent); }
         
         .btn {
             display: inline-block;
@@ -176,10 +178,11 @@
         
         .hero p {
             font-size: 1.25rem;
-            color: var(--gray);
+            color: var(--white);
             margin-bottom: 3rem;
             max-width: 600px;
             line-height: 1.7;
+            opacity: 0.9;
         }
         
         .hero-buttons {
@@ -243,9 +246,10 @@
         }
         
         .path-card p {
-            color: var(--gray);
+            color: var(--white);
             margin-bottom: 2rem;
             line-height: 1.7;
+            opacity: 0.9;
         }
         
         .path-features {
@@ -265,9 +269,10 @@
         }
         
         .path-features li span {
-            color: var(--gray);
+            color: var(--white);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
         
         /* Stats */
@@ -300,10 +305,11 @@
         .stat-value.accent { color: var(--accent); }
         
         .stat-label {
-            font-size: 0.8rem;
-            color: var(--gray);
+            font-size: 0.85rem;
+            color: var(--white);
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            opacity: 0.8;
         }
         
         /* Testimonials */
@@ -349,8 +355,9 @@
         
         .testimonial-role {
             font-size: 0.85rem;
-            color: var(--gray);
+            color: var(--white);
             font-family: 'JetBrains Mono', monospace;
+            opacity: 0.8;
         }
         
         /* FAQ */
@@ -397,8 +404,9 @@
         }
         
         .faq-item p {
-            color: var(--gray);
+            color: var(--white);
             line-height: 1.7;
+            opacity: 0.85;
         }
         
         /* CTA */
@@ -415,9 +423,10 @@
         }
         
         .cta p {
-            color: var(--gray);
+            color: var(--white);
             margin-bottom: 2.5rem;
             font-size: 1.1rem;
+            opacity: 0.9;
         }
         
         .cta-buttons {
@@ -431,10 +440,11 @@
             border-top: 1px solid var(--border);
             padding: 2rem 3rem;
             text-align: center;
-            color: var(--gray);
+            color: var(--white);
             font-size: 0.8rem;
             font-family: 'JetBrains Mono', monospace;
             background: transparent;
+            opacity: 0.8;
         }
         
         @media (max-width: 768px) {
